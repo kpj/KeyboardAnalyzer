@@ -37,7 +37,7 @@ int connectSocket() {
 	if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		printf("Error in socket creation\n");
 		return 0;
-  }
+	}
 
 	memset(&serv_addr, '0', sizeof(serv_addr));
 	serv_addr.sin_family = AF_INET;
