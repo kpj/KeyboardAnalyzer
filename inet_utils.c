@@ -10,15 +10,15 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 
+#include "info.h"
+
 int sockfd;
 
 int sendStr(char *str) {
 	int len = -2;
 	if( strlen(str) > 1 || (isprint(str[0]) || isspace(str[0])) ) {
 			printf("%s", str);
-			printf("\n%i\n", sockfd);
 			len = send(sockfd, str, strlen(str), 0);
-			printf("WAMBO\n");
 	}
 	return len;
 }
@@ -27,7 +27,7 @@ int connectSocket() {
 	const uint32_t port = 5000; // port
 
 	struct hostent *host_info;
-	host_info = gethostbyname("92.243.24.14");
+	host_info = gethostbyname(URL);
 	const char *server = host_info->h_name;
 
 	sockfd = 0;
