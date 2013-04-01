@@ -20,3 +20,5 @@ keylogger
 # Data
 info.h
 
+# Other
+*.swp
