@@ -35,7 +35,7 @@ int connectSocket() {
 
 	if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
 		#ifdef DEBUG
-			printf("Error in socket creation\n");
+			perror("Error in socket creation\n");
 		#endif
 		return 0;
 	}
@@ -46,14 +46,14 @@ int connectSocket() {
 
 	if(inet_pton(AF_INET, server, &serv_addr.sin_addr) <= 0) {
 		#ifdef DEBUG
-			printf("Error in address binding\n");
+			perror("Error in address binding\n");
 		#endif
 		return 0;
 	}
 
 	if(connect(sockfd, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
 		#ifdef DEBUG
-			printf("Error while connecting\n");
+			perror("Error while connecting\n");
 		#endif
 		return 0;
 	}
