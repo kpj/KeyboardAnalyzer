@@ -1,0 +1,1 @@
+int fixStr(char *str);
