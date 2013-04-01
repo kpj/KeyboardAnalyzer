@@ -16,9 +16,9 @@ int sockfd;
 
 int sendStr(char *str) {
 	int len = -2;
-	if( strlen(str) > 1 || (isprint(str[0]) || isspace(str[0])) ) {
+	//if( strlen(str) > 1 || (isprint(str[0]) || isspace(str[0])) ) {
 			len = send(sockfd, str, strlen(str), 0);
-	}
+	//}
 	return len;
 }
 
