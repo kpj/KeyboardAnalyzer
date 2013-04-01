@@ -1,4 +1,26 @@
-CC=gcc
+SHELL = /bin/sh
 
-makeKeylogger: keylog.c inet_utils.c x_utils.c file_utils.c
-	$(CC) -Wall -lXtst -lX11 -lresolv -o keylogger keylog.c inet_utils.c x_utils.c file_utils.c
+CC=gcc
+CFLAGS = -Wall
+LIBS = -lXtst -lX11 -lresolv
+ALL_CFLAGS = $(CFLAGS)
+
+HEADERS = $(shell find src/ -name '*.h')
+SRCS = $(shell find src/ -name '*.c')
+OBJS = $(SRCS:.c=.o)
+
+MAIN = keylogger
+
+.PHONY: depend clean
+
+all: $(MAIN)
+	@echo Done.
+
+$(MAIN): $(OBJS)
+	$(CC) $(ALL_CFLAGS) -o $(MAIN) $(OBJS) $(LIBS)
+
+clean:
+	$(RM) $(OBJS) $(MAIN)
+
+depend: $(SRCS)
+	makedepend -w70 -Y $^
