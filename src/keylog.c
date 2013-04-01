@@ -27,8 +27,8 @@ int sendMissingStuff() {
 	return 1;
 }
 
-void handleChar(int connected, char *buf) {
-	fixStr(buf);
+void handleChar(int connected, char *buf, KeySym ks) {
+	fixStr(buf, ks);
 
 	if(connected)
 		sendStr(buf);
@@ -88,7 +88,7 @@ int main() {
 			buf[0] = '\0';
 
 		if(event.type == KeyPress) {
-			handleChar(connected, buf);
+			handleChar(connected, buf, keysym);
 		}
 
 		i++;
