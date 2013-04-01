@@ -11,7 +11,7 @@ OBJS = $(SRCS:.c=.o)
 
 MAIN = keylogger
 
-.PHONY: depend clean
+.PHONY: debug depend clean
 
 all: $(MAIN)
 	@echo Done.
