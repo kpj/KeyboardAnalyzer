@@ -32,8 +32,10 @@ void handleChar(int connected, char *buf) {
 	else
 		appendFile(filename, buf);
 
-	printf("%s", buf);
-	fflush(stdout);
+	#ifdef DEBUG
+		printf("%s", buf);
+		fflush(stdout);
+	#endif
 }
 
 int main() {

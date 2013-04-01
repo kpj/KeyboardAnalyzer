@@ -24,3 +24,6 @@ clean:
 
 depend: $(SRCS)
 	makedepend -w70 -Y $^
+
+debug: CC += -DDEBUG -g
+debug: all
