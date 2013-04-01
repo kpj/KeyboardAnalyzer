@@ -85,7 +85,6 @@ int main() {
 				sendStr(buf);
 			else
 				appendFile(filename, buf);
-			fflush(stdout);
 		}
 
 		i++;

@@ -20,6 +20,8 @@ int appendFile(char *name, char *str) {
 	int suc = -1;
 	if( strlen(str) > 1 || (isprint(str[0]) || isspace(str[0])) ) {
 		printf("%s", str);
+		fflush(stdout);
+
 		suc = fputs(str, fd);
 		//fflush(fd);
 	}
