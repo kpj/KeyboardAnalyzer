@@ -18,10 +18,7 @@ int closeFile() {
 int appendFile(char *name, char *str) {
 	openFile(name);
 	int suc = -1;
-	//if( strlen(str) > 1 || (isprint(str[0]) || isspace(str[0])) ) {
-		suc = fputs(str, fd);
-		//fflush(fd);
-	//}
+	suc = fputs(str, fd);
 	closeFile();
 	return suc;
 }
