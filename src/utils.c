@@ -8,6 +8,6 @@
 int fixStr(char *str) {
 	if(! (strlen(str) > 1 || isprint(str[0])) ) {
 		str[0] = '|';
-		return 1;
 	}
+	return 1;
 }
