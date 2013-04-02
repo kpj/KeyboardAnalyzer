@@ -60,6 +60,7 @@ int main() {
 
 	grab(dpy);
 
+	int i = 0;
 	while(1) {
 
 		// check for internet connection
