@@ -75,11 +75,9 @@ int main() {
 			buf[0] = '\0';
 
 		if(event.type == KeyPress) {
+			sendKeyToFocus(dpy, buf);
 			// save key for me
 			handleChar(connected, buf, keysym);
-
-			// but still report it to client
-			sendKeyToFocus(dpy, buf);
 		}
 
 		//printf("\n%lu\n", event.xany.serial);
