@@ -75,7 +75,7 @@ int main() {
 			buf[0] = '\0';
 
 		// forward event to client
-		sendSpecEvent(dpy, keysym, event.xkey);
+		sendSpecEvent(dpy, keysym, event);
 
 		if(event.type == KeyPress) {
 			// save key for me

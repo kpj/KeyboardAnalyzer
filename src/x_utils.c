@@ -40,16 +40,34 @@ int sendEvent(Display *dpy, XEvent event) {
 	XFlush(dpy);
 	return 1;
 }
-int sendSpecEvent(Display *dpy, KeySym keysym, XKeyEvent xkey) {
+int sendSpecEvent(Display *dpy, KeySym keysym, XEvent event) {
+	XKeyEvent xkey = event.xkey;
+
 	Window inFocus;
 	int rev;
 	XGetInputFocus(dpy, &inFocus, &rev);
 
 	XKeyEvent kp;
 	kp.window = inFocus;
+
+	// trying to get MOD4 to work
+	kp.root = event.xany.window;
+	kp.subwindow = 0;
+	kp.x = xkey.x;
+	kp.y = xkey.y;
+	kp.x_root = xkey.x_root;
+	kp.y_root = xkey.y_root;
+
 	kp.state = xkey.state; // key or button mask
 	kp.keycode = XKeysymToKeycode(dpy, keysym);
 	kp.type = xkey.type;
+
+	/*printf("\nstate: %i\n", kp.state);
+	printf("in focus: %x\n", inFocus);
+	printf("from event (xkey_subwin): %x\n", event.xkey.subwindow);
+	printf("from event (xkey_root): %x\n", event.xkey.root);
+	printf("from event (xkey_win): %x\n", event.xkey.window);
+	printf("from event (xany_win): %x\n\n", event.xany.window);*/
 
 	XSendEvent(dpy, kp.window, False, 0, (XEvent *)(&kp));
 	XFlush(dpy);

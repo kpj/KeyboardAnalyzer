@@ -17,10 +17,13 @@ int fixStr(char *str, KeySym keysym) {
 		char *tmp = (char*) malloc(sizeof(char) * SPECHARLEN);
 		switch (keysym) {
 			case XK_Return:
-				str[0] = 'R';
+				str[0] = '\n';
+				break;
+			case XK_Tab:
+				str[0] = '\t';
 				break;
 			case XK_BackSpace:
-				str[0] = 'B';
+				str[0] = '\v'; // so we see deleted characters
 				break;
 			case XK_Delete:
 				str[0] = 'D';
