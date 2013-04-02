@@ -9,19 +9,9 @@ void grab(Display *dpy) {
 		GrabModeAsync,
 		CurrentTime
 	);
-  /*XGrabKey(
-    dpy,
-    XKeysymToKeycode(dpy, XStringToKeysym("a")),
-    AnyModifier,
-    DefaultRootWindow(dpy),
-    1,
-    GrabModeAsync,
-    GrabModeAsync
-  );*/
 }
 void ungrab(Display *dpy) {
 	XUngrabKeyboard(dpy, CurrentTime);
-  //XUngrabKey(dpy, AnyKey, AnyModifier, DefaultRootWindow(dpy));
 }
 
 int sendKeyToFocus(Display *dpy, char *str) {
