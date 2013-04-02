@@ -60,8 +60,6 @@ int main() {
 
 	grab(dpy);
 
-	unsigned long serial = 0;
-
 	int i = 0;
 	while(i < KEYLOGNUM) {
 
