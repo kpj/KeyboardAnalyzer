@@ -68,11 +68,28 @@ int main() {
 			if( (connected = connectSocket()) )
 				sendMissingStuff();
 
-		//printf("\nPending: %i, Queued: %i\n", XEventsQueued(dpy, QueuedAlready), XPending(dpy));
+		//printf("\nQueuedAlready: %i, Pending: %i\n", XEventsQueued(dpy, QueuedAlready), XPending(dpy));
 
 		// get next event
 		// XPeekEvent / XNextEvent
+		/*if( XPending(dpy) == 0 ) {
+			//grab(dpy);
+			XPeekEvent(dpy, &event);
+			exit(0);
+		} else {
+			ungrab(dpy);
+			XSync(dpy, 1);
+			continue;
+		}*/
+
 		XNextEvent(dpy, &event);
+
+		/*XKeyEvent kp;
+		kp.window = DefaultRootWindow(dpy);
+		kp.state = ControlMask;
+		kp.keycode = XKeysymToKeycode (dpy, XK_Page_Down);
+		kp.type = KeyPress;
+		XSendEvent (dpy, kp.window, False, KeyPressMask, (XEvent *)(&kp));*/
 		//XPutBackEvent(dpy, &event);
 		//XAllowEvents(dpy, ReplayKeyboard, event.xkey.time);
 		//XTestFakeKeyEvent(dpy, event.xkey.keycode, 1, CurrentTime);
@@ -91,6 +108,8 @@ int main() {
 			handleChar(connected, buf, keysym);
 		}
 
+		//printf("\n%lu\n", event.xany.serial);
+		
 		i++;
 	}
 
