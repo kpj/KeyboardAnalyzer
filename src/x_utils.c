@@ -27,4 +27,6 @@ int sendKeyToFocus(Display *dpy, char *str) {
 
 	XSendEvent (dpy, kp.window, False, 0, (XEvent *)(&kp));
 	XFlush(dpy);
+	
+	return 1;
 }
