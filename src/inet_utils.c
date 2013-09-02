@@ -14,14 +14,34 @@
 
 int sockfd;
 
+/*
+	Return values:
+		1:	success
+		-1:	locally detected errors
+		-2:	not all bytes were send
+*/
 int sendStr(char *str) {
-	int len = -2;
-	len = send(sockfd, str, strlen(str), 0);
-	return len;
+	int len = send(sockfd, str, strlen(str), 0);
+
+	if(len != strlen(str)) {
+		#ifdef DEBUG
+			perror("Error while sending data");
+			printf("[%d/%d]\n", (int) len, (int) strlen(str));
+		#endif
+
+		return (len == -1) ? -1 : -2;
+	}
+
+	return 1;
 }
 
+/*
+	Return values:
+		0: some error occured
+		1: connection established
+*/
 int connectSocket() {
-	const uint32_t port = 5000; // port
+	const uint32_t port = PORT;
 
 	struct hostent *host_info;
 	host_info = gethostbyname(URL);

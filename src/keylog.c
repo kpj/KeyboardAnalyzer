@@ -64,9 +64,8 @@ int main() {
 
 	int i = 0;
 	while(1) {
-
 		// check for internet connection
-		if(i%CONCHECKINTV == 0 && !connected)
+		if(i % CONCHECKINTV == 0 && !connected)
 			if( (connected = connectSocket()) )
 				sendMissingStuff();
 
